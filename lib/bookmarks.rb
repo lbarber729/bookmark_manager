@@ -1,10 +1,17 @@
+require 'pg'
 class Bookmark
 
-  BOOKMARKS = [
-    'http://www.Github.com',
-    'http://www.Google.com',
-    'http://www.stackoverflow.com',
-    'http://www.Slack.com'
-  ]
+  def self.all
+    begin
 
-end
+    con = PG.connect :dbname => 'bookmark_manager', :user => 'lucybarber'
+
+    rs = con.exec "SELECT * FROM bookmarks"
+
+    rs.map { |bookmark| bookmark['url'] }.join("\n")
+    # rs.each do |row|
+    #   puts "%s %s" % [ row['id'], row['url'] ]
+    end
+  end
+
+  end
