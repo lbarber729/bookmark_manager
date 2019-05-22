@@ -2,16 +2,13 @@ require 'pg'
 class Bookmark
 
   def self.all
-    begin
-
-    con = PG.connect :dbname => 'bookmark_manager', :user => 'lucybarber'
-
-    rs = con.exec "SELECT * FROM bookmarks"
-
-    rs.map { |bookmark| bookmark['url'] }.join("\n")
-    # rs.each do |row|
-    #   puts "%s %s" % [ row['id'], row['url'] ]
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'bookmark_manager_test')
+    else
+      connection = PG.connect(dbname: 'bookmark_manager')
     end
-  end
 
+    result = connection.exec "SELECT * FROM bookmarks;"
+    result.map { |bookmark| bookmark['url'] }
+    end
   end
