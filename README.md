@@ -1,5 +1,6 @@
 ## Bookmark Manager
 The aim of this project it to build a website to maintain a collection of bookmarks using a database.
+
 The website should have the following specification -
 - Show a list of bookmarks
 - Add new bookmarks  
@@ -36,12 +37,14 @@ To set up the appropriate tables, connect to the database in `psql` and run the 
 
 ### User story 1
 ```
+As a user
 In order to see the bookmarks I have saved
 I would like the page to show a list of bookmarks
 ```
 
 Object | Message
 -|-
+User |
 Bookmark | Show a list
 
 Page ------------ Bookmark
@@ -51,10 +54,12 @@ Page ------------ Bookmark
 
 ### User story 2
 ```
+As a user
 To keep my bookmarks up to date
 I would like to be able to add to my list of bookmarks
 ```
 
 Object | Message
 -|-
+User |
 Bookmark | Add
