@@ -47,7 +47,7 @@ Object | Message
 User |
 Bookmark | Show a list
 
-![Alt Text](https://i.postimg.cc/QNRY8t0N/User-Story-1-bookmarks.jpg)
+![Alt Text](https://i.postimg.cc/02v7xWzQ/User-Story-1-bookmakrs.jpg)
 
 ### User story 2
 ```
