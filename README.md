@@ -47,10 +47,7 @@ Object | Message
 User |
 Bookmark | Show a list
 
-Page ------------ Bookmark
----------show-------->
-<--list of bookmarks---
-(use draw.io)
+![Alt Text](https://i.postimg.cc/QNRY8t0N/User-Story-1-bookmarks.jpg)
 
 ### User story 2
 ```
