@@ -22,7 +22,6 @@ class Bookmark
     end
 
     def self.add(url:, title:)
-      # return false unless is_url?(url)
       if ENV['ENVIRONMENT'] == 'test'
         connection = PG.connect(dbname: 'bookmark_manager_test')
       else
@@ -30,11 +29,35 @@ class Bookmark
       end
 
       result = connection.exec("INSERT INTO bookmarks (title, url) VALUES ('#{title}', '#{url}') RETURNING id, url, title")
-      # Bookmark.new(id: result[0]['id'], title: result[0]['title'], url:  resut[0]['url'])
+      Bookmark.new(id: result[0]['id'], title: result[0]['title'], url:  result[0]['url'])
     end
 
-    def is_url?(url)
+    def self.delete(id:)
+      if ENV['ENVIRONMENT'] == 'test'
+        connection = PG.connect(dbname: 'bookmark_manager_test')
+      else
+        connection = PG.connect(dbname: 'bookmark_manager')
+      end
+      delete = connection.exec("DELETE FROM bookmarks WHERE id = #{id};")
+    end
 
+    def self.find(id:)
+      if ENV['ENVIRONMENT'] == 'test'
+        connection = PG.connect(dbname: 'bookmark_manager_test')
+      else
+        connection = PG.connect(dbname: 'bookmark_manager')
+      end
+      find = connection.exec("SELECT url, title FROM bookmarks WHERE id = #{id};")
+      find.first
+    end
+
+    def self.update(id:, url:, title:)
+      if ENV['ENVIRONMENT'] == 'test'
+        connection = PG.connect(dbname: 'bookmark_manager_test')
+      else
+        connection = PG.connect(dbname: 'bookmark_manager')
+      end
+      connection.exec("UPDATE bookmarks SET url = '#{url}', title = '#{title}' WHERE id = #{id};")
     end
 
   end
